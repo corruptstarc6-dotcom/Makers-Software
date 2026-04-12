@@ -1,0 +1,35 @@
+<html>
+    
+<center>
+    <h1>To Do List</h1>
+
+    <form method="post" action="{{url_for('update')}}">
+        <label>What do you wanna add to your to do list?</label>
+        <br>
+        <input type="text" name="ToDo">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if items %}
+        <table border="1">
+            <tr>
+                <th>Index</th>
+                <th>Waht to do</th>
+            </tr>
+
+                {% for i in range(items | length) %}
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <td>{{items[i]}}</td>
+                        <td style="border: none;">
+                            <form action="{{url_for('remove')}}" method="post">
+                                <button type="submit" name="index" value="{{i}}">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+        </table>
+    {% endif %}
+</center>
+
+</html>
